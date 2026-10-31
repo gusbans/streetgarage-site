@@ -1,1 +1,704 @@
-<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta http-equiv="refresh" content="0; url=privacy.html"><title>Street Garage</title></head><body><a href="privacy.html">Política de Privacidade do Street Garage</a></body></html>
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Street Garage · Corrida arcade, tuning e coleção</title>
+<meta name="description" content="Street Garage é um jogo de corrida arcade visto de cima com garagem, tuning, uma cidade noturna como menu e 50 carros místicos para colecionar. Grátis, offline, Android.">
+<meta name="theme-color" content="#0b0d12">
+<link rel="icon" href="assets/favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="assets/apple_touch.png">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Street Garage · Corrida arcade, tuning e coleção">
+<meta property="og:description" content="Comece com um Fusca velho, vença corridas, tune peça por peça e monte sua coleção numa cidade noturna. Grátis e offline.">
+<meta property="og:image" content="https://gusbans.github.io/streetgarage-site/assets/og.jpg">
+<meta property="og:url" content="https://gusbans.github.io/streetgarage-site/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bangers&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0b0d12;
+    --bg-2: #11141c;
+    --surface: #161a24;
+    --surface-2: #1d2230;
+    --line: #262c3a;
+    --text: #eef1f6;
+    --muted: #9aa4b5;
+    --cyan: #22d3ee;
+    --orange: #ff6a00;
+    --magenta: #ff2fa0;
+    --gold: #ffc53d;
+    --purple: #9b6cff;
+    --green: #3ddc84;
+    --radius: 18px;
+    --max: 1120px;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  img { max-width: 100%; display: block; }
+  a { color: var(--cyan); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .wrap { max-width: var(--max); margin: 0 auto; padding: 0 16px; }
+  .display {
+    font-family: Bangers, Impact, "Arial Narrow Bold", sans-serif;
+    letter-spacing: 0.04em;
+    line-height: 0.95;
+    text-transform: uppercase;
+  }
+  h2.display { font-size: clamp(2.2rem, 5vw, 3.4rem); margin: 0 0 8px; }
+  .kicker {
+    color: var(--cyan);
+    font-weight: 800;
+    font-size: 0.78rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    margin: 0 0 8px;
+  }
+  .lead { color: var(--muted); font-size: 1.08rem; max-width: 640px; margin: 0 0 32px; }
+  section { padding: 80px 0; position: relative; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 14px 24px; border-radius: 999px;
+    font-weight: 800; font-size: 1rem; letter-spacing: 0.01em;
+    border: 2px solid transparent; cursor: pointer; transition: transform .15s, box-shadow .15s, background .15s;
+    text-decoration: none !important;
+  }
+  .btn-primary {
+    background: linear-gradient(135deg, var(--orange), #ff9a3d);
+    color: #1a0d00;
+    box-shadow: 0 10px 30px rgba(255, 106, 0, 0.35);
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 14px 36px rgba(255, 106, 0, 0.5); }
+  .btn-ghost { border-color: var(--line); color: var(--text); background: rgba(255,255,255,0.03); }
+  .btn-ghost:hover { border-color: var(--cyan); color: var(--cyan); }
+  .btn svg { width: 20px; height: 20px; }
+
+  /* NAV */
+  header.nav {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(11, 13, 18, 0.82);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+  .brand { display: flex; align-items: center; gap: 10px; color: var(--text); font-weight: 800; }
+  .brand img { width: 36px; height: 36px; border-radius: 9px; }
+  .brand .display { font-size: 1.5rem; letter-spacing: 0.06em; }
+  .brand .display b { color: var(--orange); font-weight: 400; }
+  nav.links { display: flex; gap: 22px; align-items: center; }
+  nav.links a { color: var(--muted); font-weight: 600; font-size: 0.95rem; }
+  nav.links a:hover { color: var(--text); text-decoration: none; }
+  nav.links .btn { padding: 10px 18px; font-size: 0.9rem; }
+  .burger { display: none; background: none; border: 0; color: var(--text); padding: 8px; cursor: pointer; }
+  @media (max-width: 820px) {
+    nav.links { display: none; position: absolute; top: 64px; left: 0; right: 0; flex-direction: column; background: var(--bg-2); padding: 16px; gap: 14px; border-bottom: 1px solid var(--line); }
+    nav.links.open { display: flex; }
+    .burger { display: block; }
+  }
+
+  /* HERO */
+  .hero {
+    padding: 56px 0 72px;
+    background:
+      radial-gradient(1200px 600px at 20% -10%, rgba(255, 106, 0, 0.18), transparent 60%),
+      radial-gradient(900px 500px at 90% 10%, rgba(34, 211, 238, 0.16), transparent 60%),
+      radial-gradient(700px 400px at 60% 110%, rgba(255, 47, 160, 0.14), transparent 60%),
+      var(--bg);
+    overflow: hidden;
+  }
+  .hero::before {
+    content: ""; position: absolute; inset: 0;
+    background: url("assets/feature.jpg") center/cover no-repeat;
+    opacity: 0.12; filter: blur(2px) saturate(1.2);
+    mask-image: linear-gradient(to bottom, rgba(0,0,0,0.9), transparent 90%);
+    -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,0.9), transparent 90%);
+  }
+  .hero .wrap { position: relative; display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 40px; align-items: center; }
+  .hero h1 { margin: 0 0 6px; font-size: clamp(3.6rem, 9vw, 7rem); line-height: 0.86; }
+  .hero h1 .l1 {
+    display: block;
+    background: linear-gradient(180deg, #ffffff 20%, #9be9f5 70%, var(--cyan));
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    filter: drop-shadow(0 4px 0 rgba(34, 211, 238, 0.35));
+  }
+  .hero h1 .l2 {
+    display: block;
+    background: linear-gradient(180deg, #ffd166 10%, var(--orange) 60%, #ff3d00);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    filter: drop-shadow(0 4px 0 rgba(255, 47, 160, 0.45));
+    margin-left: 0.08em;
+  }
+  .hero .tagline { font-size: clamp(1.15rem, 2.2vw, 1.5rem); font-weight: 700; margin: 18px 0 10px; }
+  .hero .lead { margin-bottom: 26px; }
+  .badges { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 28px; padding: 0; list-style: none; }
+  .badges li {
+    font-size: 0.8rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase;
+    padding: 6px 12px; border-radius: 999px; border: 1px solid var(--line); color: var(--muted);
+    background: rgba(255,255,255,0.03);
+  }
+  .badges li b { color: var(--green); }
+  .cta-row { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+  .cta-note { color: var(--muted); font-size: 0.9rem; margin-top: 14px; }
+  .hero-art { position: relative; justify-self: center; }
+  .phone {
+    width: 300px; aspect-ratio: 9 / 19;
+    border-radius: 38px; padding: 10px;
+    background: linear-gradient(160deg, #2a3040, #0c0f16);
+    box-shadow: 0 30px 80px rgba(0,0,0,0.6), inset 0 0 0 1px rgba(255,255,255,0.08);
+    position: relative;
+  }
+  .phone::after {
+    content: ""; position: absolute; top: 18px; left: 50%; transform: translateX(-50%);
+    width: 86px; height: 8px; border-radius: 999px; background: #05070a;
+  }
+  .phone .screen { width: 100%; height: 100%; border-radius: 28px; overflow: hidden; background: #000; }
+  .phone .screen img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+  .hero-art .glow {
+    position: absolute; inset: -40px; z-index: -1; border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,106,0,0.35), rgba(34,211,238,0.18) 50%, transparent 72%);
+    filter: blur(20px);
+  }
+  .float-car { position: absolute; width: 200px; display: none; filter: drop-shadow(0 14px 18px rgba(0,0,0,0.55)); animation: hover 4s ease-in-out infinite; }
+  .float-car.a { left: -120px; bottom: 40px; }
+  .float-car.b { right: -120px; top: 70px; animation-delay: -2s; }
+  @media (min-width: 1100px) { .float-car { display: block; } }
+  @keyframes hover { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+  @media (max-width: 900px) {
+    .hero .wrap { grid-template-columns: 1fr; text-align: center; }
+    .hero .lead, .badges, .cta-row { justify-content: center; margin-left: auto; margin-right: auto; }
+    .hero-art { margin-top: 20px; }
+    .phone { width: 250px; }
+  }
+
+  /* STATS */
+  .stats { padding: 0; margin-top: -30px; position: relative; z-index: 2; }
+  .stats .wrap { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
+  .stat {
+    background: var(--surface); border: 1px solid var(--line); border-radius: 14px;
+    padding: 16px 14px; text-align: center;
+  }
+  .stat .n { font-family: Bangers, Impact, sans-serif; font-size: 2.2rem; letter-spacing: 0.05em; line-height: 1; color: var(--gold); }
+  .stat .l { color: var(--muted); font-size: 0.8rem; font-weight: 600; margin-top: 4px; }
+  @media (max-width: 820px) { .stats .wrap { grid-template-columns: repeat(2, 1fr); } .stats .wrap .stat:last-child { grid-column: span 2; } }
+
+  /* FEATURES */
+  .grid { display: grid; gap: 16px; }
+  .grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
+  .grid.cols-2 { grid-template-columns: repeat(2, 1fr); }
+  @media (max-width: 900px) { .grid.cols-3 { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 600px) { .grid.cols-3, .grid.cols-2 { grid-template-columns: 1fr; } }
+  .card {
+    background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 24px; position: relative; overflow: hidden;
+    transition: transform .2s, border-color .2s;
+  }
+  .card:hover { transform: translateY(-3px); border-color: rgba(34,211,238,0.5); }
+  .card .ico {
+    width: 46px; height: 46px; border-radius: 12px; display: grid; place-items: center;
+    margin-bottom: 16px; font-size: 1.4rem;
+    background: linear-gradient(135deg, rgba(34,211,238,0.18), rgba(255,106,0,0.18));
+    border: 1px solid var(--line);
+  }
+  .card h3 { margin: 0 0 8px; font-size: 1.15rem; }
+  .card p { margin: 0; color: var(--muted); font-size: 0.95rem; }
+  .card.accent-orange { border-top: 3px solid var(--orange); }
+  .card.accent-cyan { border-top: 3px solid var(--cyan); }
+  .card.accent-magenta { border-top: 3px solid var(--magenta); }
+  .card.accent-gold { border-top: 3px solid var(--gold); }
+  .card.accent-purple { border-top: 3px solid var(--purple); }
+  .card.accent-green { border-top: 3px solid var(--green); }
+
+  /* SCREENSHOTS */
+  .shots { background: var(--bg-2); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .shot-row {
+    display: flex; gap: 22px; overflow-x: auto; padding: 10px 0 24px; scroll-snap-type: x mandatory;
+    scrollbar-width: thin; scrollbar-color: var(--line) transparent;
+  }
+  .shot { flex: 0 0 auto; scroll-snap-align: center; text-align: center; }
+  .shot .phone { width: 240px; margin: 0 auto 12px; }
+  .shot figcaption { color: var(--muted); font-size: 0.9rem; font-weight: 600; }
+  .shot figcaption b { color: var(--text); display: block; }
+
+  /* GARAGE */
+  .tabs { display: flex; gap: 8px; margin: 0 0 24px; flex-wrap: wrap; }
+  .tab {
+    padding: 10px 18px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface);
+    color: var(--muted); font-weight: 700; cursor: pointer; font-size: 0.95rem;
+  }
+  .tab[aria-selected="true"] { background: var(--orange); color: #1a0d00; border-color: var(--orange); }
+  .cars { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 14px; }
+  .car {
+    background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 14px 14px 12px;
+    text-align: center; transition: transform .2s, border-color .2s;
+  }
+  .car:hover { transform: translateY(-4px); border-color: var(--gold); }
+  .car .pic { height: 84px; display: grid; place-items: center; margin-bottom: 8px; }
+  .car .pic img { max-height: 84px; width: auto; max-width: 100%; filter: drop-shadow(0 8px 10px rgba(0,0,0,0.5)); image-rendering: auto; }
+  .car .name { font-weight: 800; font-size: 0.98rem; }
+  .car .cls { color: var(--muted); font-size: 0.8rem; }
+  .rar { display: inline-block; margin-top: 6px; font-size: 0.7rem; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; padding: 3px 9px; border-radius: 999px; }
+  .rar.epico { background: rgba(124,77,255,0.2); color: #c3a9ff; }
+  .rar.lendario { background: rgba(255,197,61,0.18); color: var(--gold); }
+  .rar.mitico { background: rgba(255,61,127,0.18); color: #ff7fb0; }
+  .panel[hidden] { display: none; }
+  @media (max-width: 600px) { .cars { grid-template-columns: repeat(2, 1fr); gap: 10px; } .car { padding: 10px 8px 10px; } .car .pic { height: 64px; } .car .pic img { max-height: 64px; } .car .name { font-size: 0.88rem; } }
+  .more { margin-top: 18px; color: var(--muted); font-size: 0.95rem; }
+
+  /* CITY */
+  .city { color: var(--text); }
+  .city::before {
+    content: ""; position: absolute; inset: 0;
+    background: url("assets/map_night.jpg") center/cover no-repeat;
+    opacity: 0.22;
+  }
+  .city::after {
+    content: ""; position: absolute; inset: 0;
+    background: linear-gradient(to bottom, var(--bg), rgba(11,13,18,0.55) 30%, rgba(11,13,18,0.55) 70%, var(--bg));
+  }
+  .city .wrap { position: relative; z-index: 1; }
+  .places { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; list-style: none; padding: 0; margin: 0; }
+  .places li {
+    background: rgba(11,13,18,0.75); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px;
+    backdrop-filter: blur(6px);
+  }
+  .places b { display: block; font-size: 0.95rem; }
+  .places span { color: var(--muted); font-size: 0.85rem; }
+  @media (max-width: 820px) { .places { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 520px) { .places { grid-template-columns: 1fr; } }
+
+  /* STORY */
+  .story-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 40px; align-items: start; }
+  @media (max-width: 900px) { .story-grid { grid-template-columns: 1fr; } }
+  .chapters { list-style: none; padding: 0; margin: 0; counter-reset: ch -1; }
+  .chapters li { display: flex; gap: 14px; align-items: center; padding: 10px 0; border-bottom: 1px dashed var(--line); counter-increment: ch; }
+  .chapters li::before {
+    content: counter(ch); font-family: Bangers, Impact, sans-serif; font-size: 1.5rem; color: var(--orange);
+    width: 36px; height: 36px; border-radius: 10px; display: grid; place-items: center; background: rgba(255,106,0,0.12); flex: 0 0 36px;
+  }
+  .chapters b { display: block; }
+  .chapters span { color: var(--muted); font-size: 0.85rem; }
+  .npcs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .npc { text-align: center; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 12px 8px; }
+  .npc img { width: 84px; height: 84px; margin: 0 auto 8px; border-radius: 50%; border: 2px solid var(--line); background: #0d1017; image-rendering: pixelated; }
+  .npc b { display: block; font-size: 0.9rem; }
+  .npc span { color: var(--muted); font-size: 0.78rem; }
+
+  /* LOOT */
+  .loot { background: var(--bg-2); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .loot-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  @media (max-width: 760px) { .loot-steps { grid-template-columns: 1fr; } }
+  .loot-steps .card { text-align: center; }
+  .loot-steps img { width: 96px; height: 96px; margin: 0 auto 10px; image-rendering: pixelated; }
+
+  /* TEST */
+  .test .box {
+    border-radius: 24px; padding: 40px;
+    background: linear-gradient(135deg, rgba(255,106,0,0.16), rgba(34,211,238,0.12));
+    border: 1px solid rgba(255,255,255,0.1);
+    display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 32px; align-items: center;
+  }
+  @media (max-width: 820px) { .test .box { grid-template-columns: 1fr; padding: 28px 20px; } }
+  .steps { list-style: none; padding: 0; margin: 0 0 20px; }
+  .steps li { display: flex; gap: 12px; align-items: flex-start; padding: 8px 0; }
+  .steps li i {
+    font-style: normal; font-family: Bangers, Impact, sans-serif; font-size: 1.3rem; color: #1a0d00;
+    width: 30px; height: 30px; border-radius: 50%; background: var(--gold); display: grid; place-items: center; flex: 0 0 30px;
+  }
+  .steps li span { color: var(--text); }
+  .steps li span small { display: block; color: var(--muted); }
+  .qr-note { background: rgba(0,0,0,0.3); border-radius: 16px; padding: 18px; font-size: 0.92rem; color: var(--muted); }
+  .qr-note code { color: var(--cyan); word-break: break-all; }
+
+  /* FAQ */
+  details { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 0 20px; margin-bottom: 10px; }
+  summary { cursor: pointer; padding: 16px 0; font-weight: 700; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+  summary::-webkit-details-marker { display: none; }
+  summary::after { content: "+"; color: var(--orange); font-family: Bangers, Impact, sans-serif; font-size: 1.6rem; }
+  details[open] summary::after { content: "–"; }
+  details p { margin: 0 0 16px; color: var(--muted); }
+
+  /* FOOTER */
+  footer { border-top: 1px solid var(--line); padding: 40px 0; color: var(--muted); font-size: 0.9rem; }
+  footer .wrap { display: flex; flex-wrap: wrap; gap: 20px; justify-content: space-between; align-items: center; }
+  footer nav { display: flex; gap: 18px; flex-wrap: wrap; }
+  footer a { color: var(--muted); }
+  footer a:hover { color: var(--cyan); }
+
+  .reveal { opacity: 0; transform: translateY(16px); transition: opacity .6s ease, transform .6s ease; }
+  .reveal.in { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } .float-car { animation: none; } }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Street Garage">
+      <img src="assets/icon_192.png" alt="" width="36" height="36">
+      <span class="display">Street <b>Garage</b></span>
+    </a>
+    <button class="burger" aria-label="Abrir menu" aria-expanded="false" onclick="toggleNav(this)">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+    <nav class="links" id="links">
+      <a href="#jogo">O jogo</a>
+      <a href="#garagem">Carros</a>
+      <a href="#cidade">Cidade</a>
+      <a href="#historia">História</a>
+      <a href="#faq">Dúvidas</a>
+      <a class="btn btn-primary" href="#testar">Quero testar</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <p class="kicker">Corrida arcade · tuning · coleção</p>
+      <h1 class="display"><span class="l1">Street</span><span class="l2">Garage</span></h1>
+      <p class="tagline">Sua garagem. Sua história.</p>
+      <p class="lead">Comece com um Fusca velho, vença corridas numa cidade noturna, melhore o carro peça por peça e monte uma coleção com 50 carros místicos. Tudo jogando, sem energia e sem espera.</p>
+      <ul class="badges">
+        <li><b>Grátis</b></li>
+        <li>Funciona offline</li>
+        <li>Android</li>
+        <li>Controle com uma mão</li>
+        <li>Sem anúncio na corrida</li>
+      </ul>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="#testar">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3.6 2.3 13.4 12l-9.8 9.7c-.4-.2-.6-.6-.6-1.1V3.4c0-.5.2-.9.6-1.1zm11.2 11.1 2.8 2.8-10.9 6.2 8.1-9zm0-2.8-8.1-9 10.9 6.2-2.8 2.8zm1.6 1.4 3.5-2c.9-.5.9-1.5 0-2l-3.5-2L13 12l3.4 3.4z"/></svg>
+          Entrar no teste fechado
+        </a>
+        <a class="btn btn-ghost" href="#jogo">Ver o jogo</a>
+      </div>
+      <p class="cta-note">Em teste no Google Play. Lançamento aberto em breve.</p>
+    </div>
+    <div class="hero-art">
+      <div class="glow"></div>
+      <img class="float-car a" src="assets/car_mystic_dragao_vermelho.png" alt="" loading="eager">
+      <img class="float-car b" src="assets/car_mystic_hyperion.png" alt="" loading="eager">
+      <div class="phone"><div class="screen"><img src="assets/hero_title.jpg" alt="Tela de título do Street Garage: logo neon sobre uma garagem" width="840" height="940"></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="stats" aria-label="Números do jogo">
+  <div class="wrap">
+    <div class="stat"><div class="n">60</div><div class="l">carros (10 de rua + 50 místicos)</div></div>
+    <div class="stat"><div class="n">4</div><div class="l">pistas + Arena de Drift</div></div>
+    <div class="stat"><div class="n">9</div><div class="l">capítulos de história</div></div>
+    <div class="stat"><div class="n">5</div><div class="l">dificuldades, do Iniciante ao Pro</div></div>
+    <div class="stat"><div class="n">0</div><div class="l">energia, espera ou anúncio na pista</div></div>
+  </div>
+</section>
+
+<section id="jogo">
+  <div class="wrap">
+    <p class="kicker">O jogo</p>
+    <h2 class="display">Corra, tune, colecione</h2>
+    <p class="lead">Um jogo de corrida visto de cima, estilo arcade, com progressão de garagem. Rápido de jogar, difícil de largar.</p>
+    <div class="grid cols-3">
+      <article class="card accent-cyan reveal">
+        <div class="ico">🕹️</div>
+        <h3>Controle com uma mão</h3>
+        <p>Joystick flutuante que nasce onde o dedo toca e nitro automático. Dá para jogar no ônibus, em pé, segurando o café.</p>
+      </article>
+      <article class="card accent-orange reveal">
+        <div class="ico">🏁</div>
+        <h3>Nenhuma corrida é igual</h3>
+        <p>Rivais sorteiam carro, peças e estilo a cada largada. Cinco dificuldades, do Iniciante (treino de uma volta) ao Profissional, onde os bots chegam armados.</p>
+      </article>
+      <article class="card accent-magenta reveal">
+        <div class="ico">🔧</div>
+        <h3>Garagem e Bancada</h3>
+        <p>Sete upgrades com dez níveis, pintura, desgaste e reparo. Na Bancada, adesivos, aros, neon, aerofólio e gadgets como o para-choque elétrico e o lançador de espinhos.</p>
+      </article>
+      <article class="card accent-gold reveal">
+        <div class="ico">📦</div>
+        <h3>Carga de Corrida</h3>
+        <p>Toda corrida com rivais rende uma Carga: carro, peça ou Sucata. As chances ficam à vista e a Sucata compra o que faltar no Ferro-velho do Pete.</p>
+      </article>
+      <article class="card accent-purple reveal">
+        <div class="ico">🌃</div>
+        <h3>A cidade é o menu</h3>
+        <p>Arraste um mapa noturno com trânsito vivo. Cada prédio é uma área do jogo e acende conforme a história avança.</p>
+      </article>
+      <article class="card accent-green reveal">
+        <div class="ico">🏆</div>
+        <h3>Copas, drift e rankings</h3>
+        <p>Campeonatos em etapas com pontuação de copa, Resistência, Arena de Drift, Time Trial semanal com ranking online e visita à garagem de outros pilotos.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="shots">
+  <div class="wrap">
+    <p class="kicker">Na tela</p>
+    <h2 class="display">Direto do aparelho</h2>
+    <p class="lead">Capturas reais da versão de teste.</p>
+    <div class="shot-row">
+      <figure class="shot">
+        <div class="phone"><div class="screen"><img src="assets/shot_02_cidade.jpg" alt="Cidade noturna com rotatória, prédios e carros no trânsito" loading="lazy" width="486" height="855"></div></div>
+        <figcaption><b>Cidade</b>o menu que se arrasta</figcaption>
+      </figure>
+      <figure class="shot">
+        <div class="phone"><div class="screen"><img src="assets/shot_03_corrida.jpg" alt="Corrida vista de cima no Downtown Circuit com o jogador na frente" loading="lazy" width="486" height="855"></div></div>
+        <figcaption><b>Corrida</b>Downtown Circuit, 147 km/h</figcaption>
+      </figure>
+      <figure class="shot">
+        <div class="phone"><div class="screen"><img src="assets/shot_04_garagem.jpg" alt="Garagem com Fusca Velho e Supercarro X, durabilidade e pintura" loading="lazy" width="486" height="855"></div></div>
+        <figcaption><b>Garagem</b>upgrades, pintura e vagas</figcaption>
+      </figure>
+      <figure class="shot">
+        <div class="phone"><div class="screen"><img src="assets/shot_05_bancada.jpg" alt="Bancada de tuning com o Supercarro X e as peças equipadas" loading="lazy" width="486" height="855"></div></div>
+        <figcaption><b>Bancada</b>uma peça por parte do carro</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section id="garagem">
+  <div class="wrap">
+    <p class="kicker">Coleção</p>
+    <h2 class="display">Da rua ao místico</h2>
+    <p class="lead">Dez carros de rua para evoluir e cinquenta místicos para colecionar, todos conquistáveis jogando. Nomes e modelos são originais do jogo.</p>
+    <div class="tabs" role="tablist">
+      <button class="tab" role="tab" aria-selected="true" aria-controls="panel-rua" id="tab-rua">Carros de rua</button>
+      <button class="tab" role="tab" aria-selected="false" aria-controls="panel-mistico" id="tab-mistico">Místicos</button>
+    </div>
+    <div class="panel" id="panel-rua" role="tabpanel" aria-labelledby="tab-rua">
+      <div class="cars">
+        <div class="car reveal"><div class="pic"><img src="assets/car_fusca.png" alt="Fusca Velho" loading="lazy"></div><div class="name">Fusca Velho</div><div class="cls">Compacto · seu primeiro carro</div></div>
+        <div class="car reveal"><div class="pic"><img src="assets/car_hatch_pop.png" alt="Hatch Popular" loading="lazy"></div><div class="name">Hatch Popular</div><div class="cls">Hatch</div></div>
+        <div class="car reveal"><div class="pic"><img src="assets/car_sedan_exec.png" alt="Sedã Executivo" loading="lazy"></div><div class="name">Sedã Executivo</div><div class="cls">Sedã</div></div>
+        <div class="car reveal"><div class="pic"><img src="assets/car_pickup_4x4.png" alt="Picape 4x4" loading="lazy"></div><div class="name">Picape 4x4</div><div class="cls">Picape</div></div>
+        <div class="car reveal"><div class="pic"><img src="assets/car_van_cargo.png" alt="Van Cargo" loading="lazy"></div><div class="name">Van Cargo</div><div class="cls">Van</div></div>
+        <div class="car reveal"><div class="pic"><img src="assets/car_muscle_v8.png" alt="Muscle V8" loading="lazy"></div><div class="name">Muscle V8</div><div class="cls">Muscle</div></div>
+        <div class="car reveal"><div class="pic"><img src="assets/car_sport_gt.png" alt="Esportivo GT" loading="lazy"></div><div class="name">Esportivo GT</div><div class="cls">Esportivo</div></div>
+        <div class="car reveal"><div class="pic"><img src="assets/car_formula_1.png" alt="Fórmula Street" loading="lazy"></div><div class="name">Fórmula Street</div><div class="cls">Fórmula</div></div>
+        <div class="car reveal"><div class="pic"><img src="assets/car_truck_race.png" alt="Caminhão de Corrida" loading="lazy"></div><div class="name">Caminhão de Corrida</div><div class="cls">Caminhão</div></div>
+        <div class="car reveal"><div class="pic"><img src="assets/car_supercar_x.png" alt="Supercarro X" loading="lazy"></div><div class="name">Supercarro X</div><div class="cls">Supercarro</div></div>
+      </div>
+    </div>
+    <div class="panel" id="panel-mistico" role="tabpanel" aria-labelledby="tab-mistico" hidden>
+      <div class="cars">
+        <div class="car"><div class="pic"><img src="assets/car_mystic_dragao_vermelho.png" alt="Dragão Vermelho" loading="lazy"></div><div class="name">Dragão Vermelho</div><div class="cls">Lendas do Asfalto</div><span class="rar lendario">Lendário</span></div>
+        <div class="car"><div class="pic"><img src="assets/car_mystic_hyperion.png" alt="Hyperion" loading="lazy"></div><div class="name">Hyperion</div><div class="cls">Cyber Garage</div><span class="rar mitico">Mítico</span></div>
+        <div class="car"><div class="pic"><img src="assets/car_mystic_maquina_temporal.png" alt="Máquina Temporal" loading="lazy"></div><div class="name">Máquina Temporal</div><div class="cls">Máquinas do Tempo</div><span class="rar mitico">Mítico</span></div>
+        <div class="car"><div class="pic"><img src="assets/car_mystic_neon_phantom.png" alt="Neon Phantom" loading="lazy"></div><div class="name">Neon Phantom</div><div class="cls">Cyber Garage</div><span class="rar lendario">Lendário</span></div>
+        <div class="car"><div class="pic"><img src="assets/car_mystic_cavaleiro_sombrio.png" alt="Cavaleiro Sombrio" loading="lazy"></div><div class="name">Cavaleiro Sombrio</div><div class="cls">Sombras da Cidade</div><span class="rar lendario">Lendário</span></div>
+        <div class="car"><div class="pic"><img src="assets/car_mystic_relampago_branco.png" alt="Relâmpago Branco" loading="lazy"></div><div class="name">Relâmpago Branco</div><div class="cls">Lendas do Asfalto</div><span class="rar lendario">Lendário</span></div>
+        <div class="car"><div class="pic"><img src="assets/car_mystic_hover_x.png" alt="Hover-X" loading="lazy"></div><div class="name">Hover-X</div><div class="cls">Cyber Garage</div><span class="rar lendario">Lendário</span></div>
+        <div class="car"><div class="pic"><img src="assets/car_mystic_vampiro_gt.png" alt="Vampiro GT" loading="lazy"></div><div class="name">Vampiro GT</div><div class="cls">Festival do Horror</div><span class="rar lendario">Lendário</span></div>
+        <div class="car"><div class="pic"><img src="assets/car_mystic_escorpiao_cosmico.png" alt="Escorpião Cósmico" loading="lazy"></div><div class="name">Escorpião Cósmico</div><div class="cls">Visitantes do Cosmos</div><span class="rar mitico">Mítico</span></div>
+        <div class="car"><div class="pic"><img src="assets/car_mystic_monstro_do_asfalto.png" alt="Monstro do Asfalto" loading="lazy"></div><div class="name">Monstro do Asfalto</div><div class="cls">Sonhos de Criança</div><span class="rar mitico">Mítico</span></div>
+        <div class="car"><div class="pic"><img src="assets/car_mystic_patinho_supersonico.png" alt="Patinho Supersônico" loading="lazy"></div><div class="name">Patinho Supersônico</div><div class="cls">Sonhos de Criança</div><span class="rar lendario">Lendário</span></div>
+        <div class="car"><div class="pic"><img src="assets/car_mystic_banana_gt.png" alt="Banana GT" loading="lazy"></div><div class="name">Banana GT</div><div class="cls">Sonhos de Criança</div><span class="rar epico">Épico</span></div>
+        <div class="car"><div class="pic"><img src="assets/car_mystic_abobora_turbo.png" alt="Abóbora Turbo" loading="lazy"></div><div class="name">Abóbora Turbo</div><div class="cls">Festival do Horror</div><span class="rar epico">Épico</span></div>
+        <div class="car"><div class="pic"><img src="assets/car_mystic_kombosaurus.png" alt="Kombosaurus" loading="lazy"></div><div class="name">Kombosaurus</div><div class="cls">Sonhos de Criança</div><span class="rar epico">Épico</span></div>
+        <div class="car"><div class="pic"><img src="assets/car_mystic_hot_dog_racer.png" alt="Hot Dog Racer" loading="lazy"></div><div class="name">Hot Dog Racer</div><div class="cls">Sonhos de Criança</div><span class="rar epico">Épico</span></div>
+        <div class="car"><div class="pic"><img src="assets/car_mystic_fusca_celestial.png" alt="Fusca Celestial" loading="lazy"></div><div class="name">Fusca Celestial</div><div class="cls">Sonhos de Criança</div><span class="rar epico">Épico</span></div>
+      </div>
+      <p class="more">E mais 34 místicos em seis coleções: Visitantes do Cosmos, Festival do Horror, Cyber Garage, Sonhos de Criança, Lendas do Asfalto e Lendas do Cinema. Um diferente em destaque todo dia no Museu dos Místicos.</p>
+    </div>
+  </div>
+</section>
+
+<section class="loot">
+  <div class="wrap">
+    <p class="kicker">Progressão</p>
+    <h2 class="display">Tudo se conquista jogando</h2>
+    <p class="lead">Não existe item aleatório pago. O caminho é correr, abrir Cargas e trocar o que sobra.</p>
+    <div class="loot-steps">
+      <article class="card reveal">
+        <img src="assets/gacha_crate.png" alt="" loading="lazy">
+        <h3>1. Corra e abra a Carga</h3>
+        <p>Cada corrida com rivais dá uma Carga de Corrida com carro, peça de tuning ou Sucata. As chances ficam sempre visíveis.</p>
+      </article>
+      <article class="card reveal">
+        <img src="assets/gacha_scrap.png" alt="" loading="lazy">
+        <h3>2. Duplicata vira Sucata</h3>
+        <p>Repetiu? Vira Sucata. No Ferro-velho do Pete, a Sucata compra exatamente a peça ou o carro que falta na sua coleção.</p>
+      </article>
+      <article class="card reveal">
+        <img src="assets/gacha_chest.png" alt="" loading="lazy">
+        <h3>3. Abra o Cofre Místico</h3>
+        <p>Ingressos ganhos na história e no Passe de Temporada gratuito abrem o Cofre, onde saem os 50 místicos.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="cidade" class="city">
+  <div class="wrap">
+    <p class="kicker">Guassu City</p>
+    <h2 class="display">Uma cidade inteira como menu</h2>
+    <p class="lead">Nada de lista de botões. Você arrasta o mapa noturno, o trânsito usa os carros do próprio jogo e seu carro fica estacionado na sua garagem. Toque num prédio para entrar.</p>
+    <ul class="places">
+      <li><b>Autódromo</b><span>escolha de pista e dificuldade</span></li>
+      <li><b>Sua Garagem</b><span>carros, upgrades, pintura e vagas</span></li>
+      <li><b>Bancada</b><span>adesivos, aros, neon, gadgets</span></li>
+      <li><b>Oficina</b><span>mecânicos e renda passiva</span></li>
+      <li><b>Ferro-velho do Pete</b><span>troca de Sucata por peças e carros</span></li>
+      <li><b>Carga de Corrida</b><span>abra o que ganhou na pista</span></li>
+      <li><b>Arena</b><span>Drift, Resistência e Time Trial</span></li>
+      <li><b>Copas</b><span>campeonatos em etapas</span></li>
+      <li><b>Museu dos Místicos</b><span>coleção e destaque do dia</span></li>
+      <li><b>Praça</b><span>Monumento, Telão de rankings e Banca Diário</span></li>
+      <li><b>Patrocínios</b><span>contratos com metas e prêmios</span></li>
+      <li><b>Hall da Fama</b><span>conquistas e troféus</span></li>
+    </ul>
+  </div>
+</section>
+
+<section id="historia">
+  <div class="wrap">
+    <p class="kicker">Modo História</p>
+    <h2 class="display">Nove capítulos, nove chefes</h2>
+    <p class="lead">Você herda uma garagem caindo aos pedaços e um Fusca velho. Cada capítulo acende novos prédios, pistas e dificuldades, com um chefe esperando na pista.</p>
+    <div class="story-grid">
+      <ol class="chapters">
+        <li><div><b>Herança</b><span>A garagem é sua. Dê a primeira volta.</span></div></li>
+        <li><div><b>Barulho na Várzea</b><span>Danny Torque quer ver se você aguenta o bairro.</span></div></li>
+        <li><div><b>Centro em Chamas</b><span>Vicky Vortex e os Asphalt Kings no Downtown.</span></div></li>
+        <li><div><b>Sucata das Sombras</b><span>Dusty Boone, o Canyon e a primeira troca no Ferro-velho.</span></div></li>
+        <li><div><b>Zona Industrial</b><span>A Baroness aparece. Resistência e Profissional.</span></div></li>
+        <li><div><b>Revanche da Várzea</b><span>Copa Várzea e o acerto de contas com Danny.</span></div></li>
+        <li><div><b>Noite Metropolitana</b><span>Copa Metropolitana sob neon.</span></div></li>
+        <li><div><b>Copa Lendária</b><span>A Baroness no comando da copa mais dura do jogo.</span></div></li>
+        <li><div><b>Lenda de Guassu City</b><span>Seu nome no Hall da Fama.</span></div></li>
+      </ol>
+      <div>
+        <div class="npcs">
+          <div class="npc reveal"><img src="assets/npc_marla.png" alt="Aunt Marla" loading="lazy"><b>Aunt Marla</b><span>Mentora</span></div>
+          <div class="npc reveal"><img src="assets/npc_danny.png" alt="Danny Torque" loading="lazy"><b>Danny Torque</b><span>Rival do bairro</span></div>
+          <div class="npc reveal"><img src="assets/npc_vicky.png" alt="Vicky Vortex" loading="lazy"><b>Vicky Vortex</b><span>Tenente dos Asphalt Kings</span></div>
+          <div class="npc reveal"><img src="assets/npc_pete.png" alt="Rusty Pete" loading="lazy"><b>Rusty Pete</b><span>Ferro-velho</span></div>
+          <div class="npc reveal"><img src="assets/npc_dusty.png" alt="Dusty Boone" loading="lazy"><b>Dusty Boone</b><span>Piloto de rali</span></div>
+          <div class="npc reveal"><img src="assets/npc_penny.png" alt="Miss Penny" loading="lazy"><b>Miss Penny</b><span>Jornaleira</span></div>
+          <div class="npc reveal"><img src="assets/npc_max.png" alt="Max Sterling" loading="lazy"><b>Max Sterling</b><span>Patrocínios</span></div>
+          <div class="npc reveal"><img src="assets/npc_curator.png" alt="The Curator" loading="lazy"><b>The Curator</b><span>Museu dos Místicos</span></div>
+          <div class="npc reveal"><img src="assets/npc_baroness.png" alt="The Baroness" loading="lazy"><b>The Baroness</b><span>Líder dos Asphalt Kings</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="testar" class="test">
+  <div class="wrap">
+    <div class="box">
+      <div>
+        <p class="kicker">Teste fechado</p>
+        <h2 class="display">Jogue antes de todo mundo</h2>
+        <p class="lead">O Street Garage está em teste no Google Play. Quem entra agora recebe cada atualização automaticamente pela Play Store e ajuda a acertar o jogo antes do lançamento.</p>
+        <ol class="steps">
+          <li><i>1</i><span>Mande seu e-mail do Google para <a href="mailto:admin@sgaragegame.com?subject=Quero%20testar%20o%20Street%20Garage">admin@sgaragegame.com</a><small>É o e-mail da conta que você usa na Play Store no celular.</small></span></li>
+          <li><i>2</i><span>Quando for adicionado, abra o link de testador no celular, logado nessa conta, e toque em <b>Tornar-se testador</b>.</span></li>
+          <li><i>3</i><span>Instale pela Play Store e corra. As próximas versões chegam sozinhas.</span></li>
+        </ol>
+        <a class="btn btn-primary" href="https://play.google.com/apps/internaltest/4701304344883169419" target="_blank" rel="noopener">Abrir o link de testador</a>
+      </div>
+      <div class="qr-note">
+        <p style="margin:0 0 10px"><b style="color:var(--text)">Já está na lista?</b> O link é este:</p>
+        <p style="margin:0 0 14px"><code>play.google.com/apps/internaltest/4701304344883169419</code></p>
+        <p style="margin:0">Se aparecer "app não disponível", a conta logada na Play Store não é a que foi cadastrada. Se você saiu do programa sem querer, basta abrir o link de novo e entrar outra vez.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap">
+    <p class="kicker">Dúvidas</p>
+    <h2 class="display">Perguntas frequentes</h2>
+    <p class="lead">O essencial sobre custo, conexão e dados.</p>
+    <details open>
+      <summary>O jogo é grátis?</summary>
+      <p>Sim. Todos os carros, peças e místicos se conquistam jogando. A loja de Gemas ainda está desligada e, quando ligar, será opcional.</p>
+    </details>
+    <details>
+      <summary>Precisa de internet?</summary>
+      <p>Não. O jogo roda inteiro offline e salva no aparelho. A internet só entra se você quiser conta, save na nuvem, rankings e visitar a garagem de outros jogadores.</p>
+    </details>
+    <details>
+      <summary>Tem anúncio?</summary>
+      <p>Não há anúncios no jogo, e nunca haverá anúncio no meio de uma corrida.</p>
+    </details>
+    <details>
+      <summary>Preciso criar conta?</summary>
+      <p>Não. Dá para jogar como convidado, e nesse caso nenhum dado sai do aparelho. Com conta (e-mail ou Google), o progresso fica preso à conta e pode ser restaurado em outro celular.</p>
+    </details>
+    <details>
+      <summary>Que celular roda?</summary>
+      <p>Android. A versão para iPhone ainda não tem data.</p>
+    </details>
+    <details>
+      <summary>Como meus dados são tratados?</summary>
+      <p>Está tudo na <a href="privacy.html">Política de Privacidade</a>. Você pode <a href="exclusao.html">excluir a conta e os dados</a> dentro do próprio app ou por e-mail.</p>
+    </details>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <div class="brand"><img src="assets/icon_192.png" alt="" width="36" height="36"><span class="display">Street <b>Garage</b></span></div>
+      <div style="margin-top:8px">© <span id="y">2026</span> Luis Augusto Affonso Lanzi - ME. Carros, nomes e personagens são criações originais do jogo.</div>
+    </div>
+    <nav>
+      <a href="privacy.html">Privacidade</a>
+      <a href="exclusao.html">Excluir conta</a>
+      <a href="mailto:admin@sgaragegame.com">admin@sgaragegame.com</a>
+    </nav>
+  </div>
+</footer>
+
+<script>
+  function toggleNav(btn) {
+    var l = document.getElementById('links');
+    var open = l.classList.toggle('open');
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  }
+  document.querySelectorAll('#links a').forEach(function (a) {
+    a.addEventListener('click', function () { document.getElementById('links').classList.remove('open'); });
+  });
+  document.querySelectorAll('.tab').forEach(function (t) {
+    t.addEventListener('click', function () {
+      document.querySelectorAll('.tab').forEach(function (o) { o.setAttribute('aria-selected', 'false'); });
+      document.querySelectorAll('.panel').forEach(function (p) { p.hidden = true; });
+      t.setAttribute('aria-selected', 'true');
+      document.getElementById(t.getAttribute('aria-controls')).hidden = false;
+    });
+  });
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+  } else {
+    document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('in'); });
+  }
+  setTimeout(function () { document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('in'); }); }, 1500);
+  document.getElementById('y').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
